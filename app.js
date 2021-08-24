@@ -20,7 +20,7 @@ const songs = [
 ];
 
 app.get("/songs", (req, res) => {
-  res.status(201).send(songs);
+  res.status(200).send(songs);
 });
 
 app.get("/song/:id", (req, res) => {
@@ -41,7 +41,7 @@ app.post("/songs", (req, res) => {
     artist: req.body.artist,
   };
   console.log(req.body);
-
+  console.log(typeof req.body);
   songs.push(newSong);
   res.status(201).send(newSong);
 });
@@ -57,9 +57,9 @@ app.put("/song/:id", (req, res) => {
     (song) => song.id === parseInt(req.params.id)
   );
 
-  songToUpdate.name="req.body.name";
-  songToUpdate.name="req.body.name";
-   res.status(200).send(newSongInfo);
+  songToUpdate.name = "req.body.name";
+  songToUpdate.name = "req.body.name";
+  res.status(200).send(newSongInfo);
 });
 
 app.delete("/songs/:id", (req, res) => {
@@ -75,5 +75,9 @@ app.delete("/songs/:id", (req, res) => {
   songs.splice(indexToDelete, 1);
 
   res.status(200).send(songToDelete);
+});
+
+app.get("/", (req, res) => {
+  res.send("Welcome to my homepage");
 });
 module.exports = app;
